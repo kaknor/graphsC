@@ -5,6 +5,8 @@
 # include <stdlib.h>
 # include <stddef.h>
 
+#define INF 666
+
 struct graph
 {
   int n;
@@ -14,6 +16,13 @@ struct graph
 static inline size_t coord(size_t i, size_t j, size_t n)
 {
   return i * n + j;
+}
+
+static inline int plus(int i, int j)
+{
+  if (i == INF || j == INF)
+    return INF;
+  return i + j;
 }
 
 void init_graph(struct graph *g);
