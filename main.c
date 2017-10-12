@@ -16,16 +16,25 @@ int zero[100] =
 
 int path_single_sol[100] =
   {
-    0, 1, 1, 1, 1, 1, 1, 0, 0, 0,
-    0, 0, 0, 0, 0, 0, 1, 0, 1, 0,
-    1, 1, 1, 1, 1, 0, 1, 0, 1, 0,
-    1, 1, 1, 1, 1, 0, 1, 0, 1, 0,
-    0, 0, 0, 0, 0, 0, 1, 0, 1, 0,
-    0, 1, 1, 1, 1, 1, 1, 0, 1, 0,
-    0, 0, 0, 1, 0, 0, 0, 0, 1, 0,
-    1, 1, 0, 1, 0, 1, 1, 1, 1, 0,
-    0, 1, 0, 1, 0, 1, 0, 0, 0, 0,
-    0, 1, 0, 0, 0, 1, 0, 0, 0, 0
+    1, 2, 2, 2, 2, 2, 2, 1, 1, 1,
+    1, 1, 1, 1, 1, 1, 2, 1, 2, 1,
+    2, 2, 2, 2, 2, 1, 2, 1, 2, 1,
+    2, 2, 2, 2, 2, 1, 2, 1, 2, 1,
+    1, 1, 1, 1, 1, 1, 2, 1, 2, 1,
+    1, 2, 2, 2, 2, 2, 2, 1, 2, 1,
+    1, 1, 1, 2, 1, 1, 1, 1, 2, 1,
+    2, 2, 1, 2, 1, 2, 2, 2, 2, 1,
+    1, 2, 1, 2, 1, 2, 1, 1, 1, 1,
+    1, 2, 1, 1, 1, 2, 1, 1, 1, 1
+  };
+
+int test_pf[25] =
+  {
+    1, 1, INF, INF, INF,
+    INF, 1, 1, INF, INF,
+    INF, INF, 1, INF, INF,
+    INF, INF, 1, 1, INF,
+    INF, INF, INF, 1, 1
   };
 
 int kris_bool[36] =
@@ -43,12 +52,12 @@ int main(void)
   struct graph g;
   struct graph *ppd = malloc(sizeof (struct graph));
   struct graph *pred = malloc(sizeof (struct graph));
-  int n = 6;
+  int n = 5;
 
   g.n = n;
   g.mat = malloc(sizeof (int) * g.n * g.n);
   init_graph(&g);
-  g.mat = kris_bool;
+  g.mat = test_pf;
   print_graph(g);
 
   ppd->n = n;
@@ -61,4 +70,5 @@ int main(void)
   printf("\n pred : \n");
   print_graph(*pred);
   printf("\n");
+
 }

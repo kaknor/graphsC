@@ -25,6 +25,11 @@ static inline int plus(int i, int j)
   return i + j;
 }
 
+static inline int min(int i, int j)
+{
+  return i > j ? j : i;
+}
+
 void init_graph(struct graph *g);
 
 void floyd(struct graph *g, int *ppd, int *pred);
