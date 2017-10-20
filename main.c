@@ -1,4 +1,5 @@
 #include "graphs.h"
+#include "floyd.h"
 #define INF 666
 
 int zero[100] =

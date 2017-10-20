@@ -18,8 +18,6 @@ static inline size_t coord(size_t i, size_t j, size_t n)
 
 void init_graph(struct graph *g);
 
-void floyd(struct graph *g, int *ppd, int *pred);
-
 void print_graph(struct graph g);
 
 void print_array(int *t, size_t n);

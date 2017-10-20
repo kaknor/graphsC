@@ -1,8 +1,8 @@
 CC=gcc
 FLAGS= -std=c99 -Wall -g -o
 
-DEP=graphs.h
-SRC=graphs.c main.c
+DEP=graphs.h floyd.h
+SRC=graphs.c main.c floyd.c
 BIN=graphs
 
 .PHONY: all clean
