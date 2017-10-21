@@ -1,19 +1,24 @@
 #ifndef ARRAY_H
 # define ARRAY_H
 
-# define INIT_VALUE -42
-
 # include <stddef.h>
 # include <stdlib.h>
 
-int *init(int *tab, size_t n);
+struct array
+{
+  int *t;
+  size_t size;
+  int init_value;
+};
 
-int *add(int e, int *tab, size_t n);
+struct array *init(struct array *tab);
 
-int *rm(int e, int *tab, size_t n);
+struct array *add(int e, struct array *tab);
 
-int exists(int e, int *tab, size_t n);
+struct array *rm(int e, struct array *tab);
 
-int *choisirmin(int *tab, int *ppd, size_t tab_n, size_t ppd_n);
+int exists(int e, struct array *tab);
+
+struct array *choisirmin(struct array *tab, int *ppd, size_t ppd_n);
 
 #endif

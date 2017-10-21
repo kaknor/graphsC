@@ -1,69 +1,72 @@
 #include "array.h"
 
-int *init(int *tab, size_t n)
+/* !!!!!!for this hole file n = n * n for graphs!!!!!!! */
+/*   applications */
+
+struct array *init(struct array *tab)
 {
-  tab = malloc(sizeof (int) * n);
-  for (size_t i = 0; i < n; i++)
-    tab[i] = INIT_VALUE;
+  tab->t = malloc(sizeof (int) * tab->size);
+  for (size_t i = 0; i < tab->size; i++)
+    tab->t[i] = tab->init_value;
   return tab;
 }
 
-int *add(int e, int *tab, size_t n)
+struct array *add(int e, struct array *tab)
 {
-  for (size_t i = 0; i < n; i++)
+  for (size_t i = 0; i < tab->size; i++)
     {
-      if (tab[i] == INIT_VALUE)
+      if (tab->t[i] == tab->init_value)
         {
-          tab[i] = e;
+          tab->t[i] = e;
           break;
         }
     }
   return tab;
 }
 
-int *rm(int e, int *tab, size_t n)
+struct array *rm(int e, struct array *tab)
 {
-  for (size_t i = 0; i < n; i++)
+  for (size_t i = 0; i < tab->size; i++)
     {
-      if (tab[i] == e)
+      if (tab->t[i] == e)
         {
-          tab[i] = INIT_VALUE;
+          tab->t[i] = tab->init_value;
           break;
         }
     }
   return tab;
 }
 
-int exists(int e, int *tab, size_t n)
+int exists(int e, struct array *tab)
 {
-  for (size_t i = 0; i < n; i++)
+  for (size_t i = 0; i < tab->size; i++)
     {
-      if (tab[i] == e)
+      if (tab->t[i] == e)
         return 1;
     }
   return 0;
 }
 
-int get_min(int *tab, size_t n)
+int get_min(struct array *tab)
 {
   int res = 0;
-  for (size_t i = 0; i < n; i++)
+  for (size_t i = 0; i < tab->size; i++)
     {
-      if (tab[res] > tab[i])
+      if (tab->t[res] > tab->t[i])
         res = i;
     }
   return res;
 }
 
-int *choisirmin(int *tab, int *ppd, size_t tab_n, size_t ppd_n)
+struct array *choisirmin(struct array *tab, int *ppd, size_t ppd_n)
 {
   int m = 0;
-  for (size_t i = 0; i < tab_n; i++)
+  for (size_t i = 0; i < tab->size; i++)
     {
-      if (ppd[m] > ppd[tab[i]])
+      if (ppd[m] > ppd[tab->t[i]])
         {
           m = i;
-          tab[i] = INIT_VALUE;// rm m de tab
+          tab->t[i] = tab->init_value;// rm m de tab
           break;
         }
     }

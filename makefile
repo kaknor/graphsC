@@ -1,8 +1,8 @@
 CC=gcc
 FLAGS= -std=c99 -Wall -g -o
 
-DEP=graphs.h floyd.h array.h
-SRC=graphs.c main.c floyd.c array.c
+DEP=graphs.h floyd.h array.h dijkstra.h
+SRC=graphs.c main.c floyd.c array.c dijkstra.c
 
 BIN=graphs
 

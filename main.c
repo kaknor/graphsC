@@ -1,9 +1,7 @@
 #include "graphs.h"
-<<<<<<< HEAD
 #include "floyd.h"
+#include "dijkstra.h"
 #define INF 666
-=======
->>>>>>> 0603307e5e514778504b0e7f628d8c79452b4315
 
 int zero[100] =
   {
@@ -69,7 +67,8 @@ int main(void)
   ppd->mat = malloc(sizeof (int) * n * n);
   pred->mat = malloc(sizeof (int) * n * n);
   pred->n = n;
-  floyd(&g, ppd->mat, pred->mat);
+  /* floyd(&g, ppd->mat, pred->mat); */
+  dijkstra(0, 0, &g, ppd->mat, pred->mat);
   printf("\n ppd \n");
   print_graph(*ppd);
   printf("\n pred : \n");
