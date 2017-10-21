@@ -21,14 +21,20 @@ size_t min_diag(int dists)
 {
   int min = 9;
   int k = dists;
+  size_t index = 9;
+  size_t res = 0;
   while (k > 0)
     {
       int r = k % 10;
       if (min > r)
-	min = r;
+	{
+	  min = r;
+	  res = index;
+	}
       k /= 10;
+      index--;
     }
-  return r;
+  return res;
 }
 
 size_t choisirmin(struct array *M, int *ppd)
@@ -36,10 +42,10 @@ size_t choisirmin(struct array *M, int *ppd)
   size_t m = INF;
   for (size_t i = 0; i < M->cap; i++)
     {
-      if (M->t[i] != M->init_value &&
-	  get_min_diag(i))//min diag
+      if (M->t[i] != M->init_value)//min diag
         {
-          m = i;
+	  m = min_diag(M->t[i]);
+          m = M->t[i];
           M->t[i] = M->init_value;// rm m de M
 	  M->size--;
           break;
@@ -61,9 +67,10 @@ void dijkstra(int x_x, int x_y, struct graph *g, int *ppd, int *pred)
 	  M = add(coord(i, j, n), M);
 	}
     }
-  /* M = rm(coord(x_x, x_y, n), M); */
-  /*   while (M->size) */
-  /*     { */
-  /*       size_t m = choisirmin(M, ppd); */
-  /*     } */
+  M = rm(coord(x_x, x_y, n), M);
+    while (M->size)
+      {
+        size_t m = choisirmin(M, ppd);
+	printf("%d\n", m);
+      }
 }
