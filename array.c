@@ -63,19 +63,3 @@ int get_min(struct array *tab)
     }
   return res;
 }
-
-struct array *choisirmin(struct array *tab, int *ppd, size_t ppd_n)
-{
-  int m = 0;
-  for (size_t i = 0; i < tab->cap; i++)
-    {
-      if (ppd[m] > ppd[tab->t[i]])
-        {
-          m = i;
-          tab->t[i] = tab->init_value;// rm m de tab
-	  tab->size--;
-          break;
-        }
-    }
-  return tab;
-}

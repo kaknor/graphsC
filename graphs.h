@@ -4,12 +4,11 @@
 # include <stdio.h>
 # include "array.h"
 
-#define INF 666
-
 struct graph
 {
-  int n;
+  size_t n;
   int *mat;
+  int *diag;
 };
 
 static inline size_t coord(size_t i, size_t j, size_t n)
@@ -29,7 +28,7 @@ static inline int min(int i, int j)
   return i > j ? j : i;
 }
 
-void init_graph(struct graph *g);
+struct graph *init_graph(size_t n);
 
 void print_graph(struct graph g);
 

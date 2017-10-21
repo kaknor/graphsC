@@ -1,7 +1,7 @@
 #include "graphs.h"
 #include "floyd.h"
 #include "dijkstra.h"
-#define INF 666
+
 
 int zero[100] =
   {
@@ -33,11 +33,11 @@ int path_single_sol[100] =
 
 int test_pf[25] =
   {
-    1, 1, INF, INF, INF,
-    INF, 1, 1, INF, INF,
-    INF, INF, 1, INF, INF,
-    INF, INF, 1, 1, INF,
-    INF, INF, INF, 1, 1
+    1, 1, 5, 5, 5,
+    5, 1, 1, 5, 5,
+    5, 5, 1, 5, 5,
+    5, 5, 1, 1, 5,
+    5, 5, 5, 1, 1
   };
 
 int kris_bool[36] =
@@ -52,23 +52,17 @@ int kris_bool[36] =
 
 int main(void)
 {
-  struct graph g;
-  struct graph *ppd = malloc(sizeof (struct graph));
-  struct graph *pred = malloc(sizeof (struct graph));
   int n = 5;
-
-  g.n = n;
-  g.mat = malloc(sizeof (int) * g.n * g.n);
-  init_graph(&g);
-  g.mat = test_pf;
-  print_graph(g);
-
-  ppd->n = n;
+  struct graph *g = init_graph(n);
+  g->mat = test_pf;
+  print_graph(*g);
+  struct graph *ppd = init_graph(n);
   ppd->mat = malloc(sizeof (int) * n * n);
+  struct graph *pred = init_graph(n);
   pred->mat = malloc(sizeof (int) * n * n);
-  pred->n = n;
+
   /* floyd(&g, ppd->mat, pred->mat); */
-  dijkstra(0, 0, &g, ppd->mat, pred->mat);
+  dijkstra(0, 0, g, ppd->mat, pred->mat);
   printf("\n ppd \n");
   print_graph(*ppd);
   printf("\n pred : \n");

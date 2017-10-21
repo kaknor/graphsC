@@ -1,8 +1,9 @@
 #ifndef ARRAY_H
 # define ARRAY_H
-
 # include <stddef.h>
 # include <stdlib.h>
+
+#define INF 666
 
 struct array
 {
@@ -20,6 +21,6 @@ struct array *rm(int e, struct array *tab);
 
 int exists(int e, struct array *tab);
 
-struct array *choisirmin(struct array *tab, int *ppd, size_t ppd_n);
+/* size_t choisirmin(struct array *tab, int *ppd); */
 
 #endif
