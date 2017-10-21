@@ -9,6 +9,7 @@ struct graph
   size_t n;
   int *mat;
   int *diag;
+  int (*cost)(int x, int y, struct graph *g);
 };
 
 static inline size_t coord(size_t i, size_t j, size_t n)
@@ -28,7 +29,7 @@ static inline int min(int i, int j)
   return i > j ? j : i;
 }
 
-struct graph *init_graph(size_t n);
+struct graph *init_graph(size_t n/* , size_t g_type */);
 
 void print_graph(struct graph g);
 
