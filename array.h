@@ -7,11 +7,12 @@
 struct array
 {
   int *t;
+  size_t cap;
   size_t size;
   int init_value;
 };
 
-struct array *init(struct array *tab);
+struct array *init(size_t cap, int init_value);
 
 struct array *add(int e, struct array *tab);
 

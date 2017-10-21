@@ -3,9 +3,7 @@
 void dijkstra(int x_x, int x_y, struct graph *g, int *ppd, int *pred)
 {
   int n = g->n;
-  struct array *M = malloc(sizeof (struct array));
-  M->size = n * n;
-  M = init(malloc(sizeof (int) * M->size));
+  struct array *M = init(n * n, -42);
   for (size_t i = 0; i < n; i++)
     {
       for (size_t j = 0; j < n; j++)
