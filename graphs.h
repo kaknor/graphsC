@@ -8,7 +8,8 @@ struct graph
 {
   size_t n;
   int *mat;
-  int *diag;
+  int *d;
+  int *(*diag)(int x, struct graph *g);/* revoit un tableau init sur la stack */
   int (*cost)(int x, int y, struct graph *g);
 };
 

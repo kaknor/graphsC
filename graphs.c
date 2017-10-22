@@ -20,10 +20,52 @@ int *init_diag(size_t n)
   return diag;
 }
 
+int *diag(int x, struct graph *g)//tester des bails avec des additions de tableaux etc...
+{
+  size_t n = g->n;
+  size_t j = 0;
+  int *d = malloc(sizeof (int) * 9);
+  for (size_t i = 0; i < 9; i++)
+    d[i] = -1;
+  for (size_t i = 0; i < 9; i++)
+    {
+      int res = x + g->d[i];
+      if (res >= 0)
+	{
+	  if (i == 0 || i == 1 || i == 2)
+	    {
+	      if (res >= n * (x / 5 - 1) && res <= n * (x / 5 - 1) + 4)
+		{
+		  d[j] = res;
+		  j++;
+		}
+	    }
+	  if (i == 3 || i == 4 || i == 5)
+	    {
+	      if (res >= n * (x / 5) && res <= n * (x / 5) + 4)
+		{
+		  d[j] = res;
+		  j++;
+		}
+	    }
+	  if (i == 6 || i == 7 || i == 8)
+	    {
+	      if (res >= n * (x / 5 + 1) && res <= n * (x / 5 + 1) + 4)
+		{
+		  d[j] = res;
+		  j++;
+		}
+	    }
+	}
+    }
+  return d;
+}
+
 int cost(int x, int y, struct graph *g)
 {
+  int *d = g->diag(x, g);
   for (size_t i = 0; i < 9; i++)
-    if (x + g->diag[i] == y)
+    if (d[i] == y)
       return g->mat[y];
   return 9 ;/* INF */
 }
@@ -32,7 +74,8 @@ struct graph *init_graph(size_t n/* , size_t g_type */)
 {
   struct graph *g = malloc(sizeof (struct graph));
   g->n = n;
-  g->diag = init_diag(g->n);
+  g->d = init_diag(g->n);
+  g->diag = diag;
   g->cost = cost;
   return g;
 }
