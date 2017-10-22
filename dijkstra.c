@@ -7,18 +7,16 @@ size_t choisirmin(struct array *M, int *ppd)
     {
       if (M->t[i] != -42)
 	{
+	  if (M->t[m] == -42)
+	    m = i;
 	  if (ppd[i] == 1)
 	    {
 	      m = i;
-	      M->t[i] = -42;
+	      /* M->t[i] = -42; */
 	      break;
 	    }
 	  if (ppd[m] > ppd[i])
-	    {
-	      m = i;
-	      M->t[i] = -42;
-	      break;
-	    }
+	    m = i;
 	}
     }
   return m;
@@ -38,6 +36,26 @@ void dijkstra(int x_x, int x_y, struct graph *g, int *ppd, int *pred)
   while (M->size)
     {
       size_t m = choisirmin(M, ppd);
-      printf("%d\n", m);
+      if (M->t[m] == -42) /* trouver un autre cas d'arrete */
+	return;
+      M = rm(m, M);
+      int *d = g->diag(m, g); /* malloc */
+      for (size_t i = 0; i < 9; i++)
+	{
+	  int y = d[i];
+	  if (y >= 0)
+	    {
+	      if (M->t[y] != -42)
+		{
+		  int v = ppd[m] + g->cost(m, y, g);
+		  if (v < ppd[y])
+		    {
+		      ppd[y] = v;
+		      pred[y] = m;
+		    }
+		}
+	    }
+	}
+      /* free d */
     }
 }

@@ -47,6 +47,8 @@ int *diag(int x, struct graph *g)//tester des bails avec des additions de tablea
 
 int cost(int x, int y, struct graph *g)
 {
+  if (x == y)
+    return 0;
   int *d = g->diag(x, g);
   for (size_t i = 0; i < 9; i++)
     if (d[i] == y)
