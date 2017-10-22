@@ -2,6 +2,7 @@
 # define ARRAY_H
 # include <stddef.h>
 # include <stdlib.h>
+# include <unistd.h>
 
 #define INF 666
 
@@ -21,6 +22,6 @@ struct array *rm(int e, struct array *tab);
 
 int exists(int e, struct array *tab);
 
-/* size_t choisirmin(struct array *tab, int *ppd); */
+void free_array(struct array *tab);
 
 #endif

@@ -56,8 +56,10 @@ void dijkstra(int x_x, int x_y, struct graph *g, int *ppd, int *pred)
 		}
 	    }
 	}
-      /* free d */
+      if (d)
+	free(d);
     }
+  free_array(M);
 }
 
 void print_path(int *pr, int x, int y)

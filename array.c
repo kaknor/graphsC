@@ -6,10 +6,20 @@
 struct array *init(size_t cap, int init_value)
 {
   struct array *tab = malloc(sizeof (struct array));
+  if (!tab)
+    {
+      write(STDERR_FILENO, "tab : allocation failed in init (array)\n", 40);
+      return NULL;
+    }
   tab->init_value = init_value;
   tab->cap = cap;
   tab->size = 0;
   tab->t = malloc(sizeof (int) * tab->cap);
+  if (!tab->t)
+    {
+      write(STDERR_FILENO, "tab->t : allocation failed in init (array)\n", 43);
+      return NULL;
+    }
   for (size_t i = 0; i < tab->cap; i++)
     tab->t[i] = tab->init_value;
   return tab;
@@ -62,4 +72,12 @@ int get_min(struct array *tab)
         res = i;
     }
   return res;
+}
+
+void free_array(struct array *tab)
+{
+  if (tab->t)
+    free(tab->t);
+  if (tab)
+    free(tab);
 }

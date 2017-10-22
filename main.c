@@ -1,6 +1,7 @@
 #include "graphs.h"
 #include "floyd.h"
 #include "dijkstra.h"
+#include "stack.h"
 
 int m_zero[100] =
   {
@@ -53,6 +54,7 @@ int main(void)
 {
   int n = 10;
   struct graph *g = init_graph(n, 42);
+  free(g->mat);
   g->mat = path_single_sol;
   print_graph(*g);
   struct graph *ppd = init_graph(n, -1);
@@ -68,4 +70,12 @@ int main(void)
   printf("\n");
 
   print_path(pred->mat, 0, 99);
+
+  /* free_graph(g); */ /* pb a cause du read only des tableaux */
+  free_graph(ppd);
+  free_graph(pred);
+
+  struct stack *s = init_stack(sizeof (int), NULL);
+  for (size_t i = 0; i < 15; i++)
+    push(&i, s);
 }
