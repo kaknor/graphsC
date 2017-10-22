@@ -32,13 +32,13 @@ int *diag(int x, struct graph *g)//tester des bails avec des additions de tablea
       if (res >= 0 && res < n * n)
 	{
 	  if (i == 0 || i == 1 || i == 2)
-	    if (res >= n * (x / 5 - 1) && res <= n * (x / 5 - 1) + 4)
+	    if (res >= n * (x / n - 1) && res <= n * (x / n - 1) + n - 1)
 	      d[i] = res;
 	  if (i == 3 || i == 4 || i == 5)
-	    if (res >= n * (x / 5) && res <= n * (x / 5) + 4)
+	    if (res >= n * (x / n) && res <= n * (x / n) + n - 1)
 	      d[i] = res;
 	  if (i == 6 || i == 7 || i == 8)
-	    if (res >= n * (x / 5 + 1) && res <= n * (x / 5 + 1) + 4)
+	    if (res >= n * (x / n + 1) && res <= n * (x / n + 1) + n - 1)
 	      d[i] = res;
 	}
     }
