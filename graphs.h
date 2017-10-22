@@ -7,9 +7,10 @@
 struct graph
 {
   size_t n;
-  int *mat;
-  int *d;
-  int *(*diag)(int x, struct graph *g);/* revoit un tableau init sur la stack */
+  int inf;
+  int *mat;/* malloc */
+  int *d;/* malloc */
+  int *(*diag)(int x, struct graph *g); /* malloc */
   int (*cost)(int x, int y, struct graph *g);
 };
 
@@ -30,7 +31,7 @@ static inline int min(int i, int j)
   return i > j ? j : i;
 }
 
-struct graph *init_graph(size_t n/* , size_t g_type */);
+struct graph *init_graph(size_t n, int inf/* , size_t g_type */);
 
 void print_graph(struct graph g);
 

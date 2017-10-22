@@ -53,12 +53,12 @@ int kris_bool[36] =
 int main(void)
 {
   int n = 5;
-  struct graph *g = init_graph(n);
+  struct graph *g = init_graph(n, 9);
   g->mat = test_pf;
   print_graph(*g);
-  struct graph *ppd = init_graph(n);
+  struct graph *ppd = init_graph(n, -1);
   ppd->mat = malloc(sizeof (int) * n * n);
-  struct graph *pred = init_graph(n);
+  struct graph *pred = init_graph(n, -1);
   pred->mat = malloc(sizeof (int) * n * n);
 
   /* floyd(&g, ppd->mat, pred->mat); */
