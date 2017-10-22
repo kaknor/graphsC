@@ -69,4 +69,5 @@ int main(void)
   print_graph(*pred);
   printf("\n");
 
+  print_path(pred->mat, 0, 24);
 }

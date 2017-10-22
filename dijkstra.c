@@ -59,3 +59,16 @@ void dijkstra(int x_x, int x_y, struct graph *g, int *ppd, int *pred)
       /* free d */
     }
 }
+
+void print_path(int *pr, int x, int y)
+{
+  printf(" path : \n");
+  int k = pr[y];
+  while (k != x)
+    {
+      k = pr[y];
+      printf("%d\n", y);
+      y = k;
+    }
+  printf("%d\n", x);
+}
