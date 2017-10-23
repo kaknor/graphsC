@@ -12,14 +12,14 @@ struct stack
   size_t e_size;
   void *s;
 
-  void (*e_free)(struct stack *);
+  void (*e_free)(void *);
 };
 
 void *pop(struct stack *s);
 
 void push(void *e, struct stack *s);
 
-struct stack *init_stack(size_t e_size, void (*free_stack)(struct stack *));
+struct stack *init_stack(size_t e_size, void (*free_stack)(void *));
 
 void free_stack(struct stack *s);
 #endif

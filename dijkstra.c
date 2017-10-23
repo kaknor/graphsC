@@ -62,15 +62,32 @@ void dijkstra(int x_x, int x_y, struct graph *g, int *ppd, int *pred)
   free_array(M);
 }
 
+struct stack *get_path(int *pr, int x, int y)
+{
+  struct stack *s = init_stack(sizeof (int), NULL);
+  int k = pr[y];
+  while (k != x)
+    {
+      k = pr[y];
+      push(&y, s);
+      y = k;
+    }
+  push(&y, s);
+  return s;
+}
+
 void print_path(int *pr, int x, int y)
 {
   printf(" path : \n");
+  struct stack *s = init_stack(sizeof (int), NULL);
   int k = pr[y];
   while (k != x)
     {
       k = pr[y];
       printf("%d\n", y);
+      push(&y, s);
       y = k;
     }
+  push(&y, s);
   printf("%d\n", x);
 }

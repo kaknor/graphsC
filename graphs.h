@@ -3,6 +3,7 @@
 
 # include <stdio.h>
 # include "array.h"
+# include "stack.h"
 
 struct graph
 {

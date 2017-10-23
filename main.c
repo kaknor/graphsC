@@ -56,26 +56,54 @@ int main(void)
   struct graph *g = init_graph(n, 42);
   free(g->mat);
   g->mat = path_single_sol;
-  print_graph(*g);
+  /* print_graph(*g); */
   struct graph *ppd = init_graph(n, -1);
   ppd->mat = malloc(sizeof (int) * n * n);
   struct graph *pred = init_graph(n, -1);
   pred->mat = malloc(sizeof (int) * n * n);
 
   dijkstra(0, 0, g, ppd->mat, pred->mat);
-  printf("\n ppd \n");
-  print_graph(*ppd);
-  printf("\n pred : \n");
-  print_graph(*pred);
-  printf("\n");
+  /* printf("\n ppd \n"); */
+  /* print_graph(*ppd); */
+  /* printf("\n pred : \n"); */
+  /* print_graph(*pred); */
+  /* printf("\n"); */
 
-  print_path(pred->mat, 0, 99);
-
+  /* struct stack *s = get_path(pred->mat, 0, 99); */
+  /* for (size_t i = s->size; i > 0; i--) */
+  /*   { */
+  /*     int *a = pop(s); */
+  /*     printf("%d\n", *a); */
+  /*     free(a); */
+  /*   } */
+  
+  /* free_stack(s); */
   /* free_graph(g); */ /* pb a cause du read only des tableaux */
   free_graph(ppd);
   free_graph(pred);
-
-  struct stack *s = init_stack(sizeof (int), NULL);
-  for (size_t i = 0; i < 15; i++)
-    push(&i, s);
+  free(g->d);
+  free(g);
 }
+
+/* int main(void) */
+/* { */
+/*   struct stack *s = init_stack(sizeof (int), NULL); */
+/*   int *a = malloc(sizeof (int)); */
+/*   for (size_t i = 0; i < 16; i++) */
+/*     { */
+/*       *a = i; */
+/*       push(&i, s); */
+/*     } */
+/*   free(a); */
+/*   for (size_t i = s->size; i > 0; i--) */
+/*     { */
+/*       int *a = pop(s); */
+/*       printf("%d\n", *a); */
+/*       free(a); */
+/*     } */
+/*   if (s->s) */
+/*     free(s->s); */
+/*   if (s) */
+/*     free(s); */
+/*   return 0; */
+/* } */
