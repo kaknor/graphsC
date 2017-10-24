@@ -28,7 +28,6 @@ int *init_diag(size_t m)
 int *diag(int x, struct graph *g)//tester des bails avec des additions de tableaux etc...
 {
   size_t m = g->m;
-  size_t n = g->n;
   int *d = malloc(sizeof (int) * 9);
   if (!d)
     {
@@ -91,7 +90,7 @@ struct graph *init_graph(size_t n, size_t m, int inf/* , size_t g_type */)
   g->n = n;
   g->m = m;
   g->size = m * n;
-  g->d = init_diag(g->n);
+  g->d = init_diag(g->m);
   g->diag = diag;
   g->cost = cost;
   return g;
