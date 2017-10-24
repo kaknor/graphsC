@@ -12,9 +12,9 @@ int main(void)
   /* changer la map */
   g->mat = test_big_rect;
   struct graph *ppd = init_graph(n, m,  -1);
-  ppd->mat = malloc(sizeof (int) * n * n);
+  ppd->mat = malloc(sizeof (int) * g->size);
   struct graph *pred = init_graph(n, m,  -1);
-  pred->mat = malloc(sizeof (int) * n * n);
+  pred->mat = malloc(sizeof (int) * g->size);
 
   /* start a changer ici */
   dijkstra(0, 0, g, ppd->mat, pred->mat);
