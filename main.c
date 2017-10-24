@@ -50,35 +50,85 @@ int kris_bool[36] =
       3, INF, INF, INF, INF,   0
   };
 
+/* 3 colonnes 2 lignes */
+int test_rect[6] =
+  {
+    1, 2, 3,
+    1, 1, 1
+  };
+
+char test_simple[16] =
+  {
+    'b','b','b','b',
+    'b','s','r','b',
+    'b','g','f','b',
+    'b','b','b','b'
+  };
+
+/* char acu_test_simple[55 * 25] = */
+/*   { */
+/*     b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b, */
+/*     b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b, */
+/*     b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b, */
+/*     b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b, */
+/*     b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b, */
+/*     b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b, */
+/*     b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b, */
+/*     b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b, */
+/*     b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b, */
+/*     b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b, */
+/*     b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b, */
+/*     b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b, */
+/*     b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b, */
+/*     b,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,b, */
+/*     b,r,s,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,f,r,b, */
+/*     b,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,b, */
+/*     b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b, */
+/*     b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b, */
+/*     b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b, */
+/*     b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b, */
+/*     b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b, */
+/*     b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b, */
+/*     b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b, */
+/*     b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b, */
+/*     b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b */
+/*   }; */
+
 int main(void)
 {
-  int n = 10;
-  struct graph *g = init_graph(n, 42);
-  free(g->mat);
-  g->mat = path_single_sol;
-  /* print_graph(*g); */
-  struct graph *ppd = init_graph(n, -1);
+  /* changer n par m pour matrice non carre, n sinon */
+  size_t n = 2;
+  size_t m = 3;
+  /* changer inf du graph */
+  struct graph *g = init_graph(n, m, 42);
+  if (g->mat)
+    free(g->mat);
+  /* changer la map */
+  g->mat = test_rect;
+  struct graph *ppd = init_graph(n, m,  -1);
   ppd->mat = malloc(sizeof (int) * n * n);
-  struct graph *pred = init_graph(n, -1);
+  struct graph *pred = init_graph(n, m,  -1);
   pred->mat = malloc(sizeof (int) * n * n);
 
+  /* start a changer ici */
   dijkstra(0, 0, g, ppd->mat, pred->mat);
-  /* printf("\n ppd \n"); */
-  /* print_graph(*ppd); */
-  /* printf("\n pred : \n"); */
-  /* print_graph(*pred); */
-  /* printf("\n"); */
+  printf("\n ppd \n");
+  print_graph(*ppd);
+  printf("\n pred : \n");
+  print_graph(*pred);
+  printf("\n");
 
-  /* struct stack *s = get_path(pred->mat, 0, 99); */
-  /* for (size_t i = s->size; i > 0; i--) */
-  /*   { */
-  /*     int *a = pop(s); */
-  /*     printf("%d\n", *a); */
-  /*     free(a); */
-  /*   } */
-  
-  /* free_stack(s); */
-  /* free_graph(g); */ /* pb a cause du read only des tableaux */
+  /* start et finish a changer ici */
+  struct stack *s = get_path(pred->mat, 0, 5, sizeof (int));
+  for (size_t i = s->size; i > 0; i--)
+    {
+      int *a = pop(s);
+      printf("%d\n", *a);
+      free(a);
+    }
+
+  free_stack(s);
+  /* free_graph(g); /\* pb a cause du read only des tableaux *\/ */
   free_graph(ppd);
   free_graph(pred);
   free(g->d);
