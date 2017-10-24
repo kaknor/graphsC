@@ -1,7 +1,7 @@
 CC=gcc
 FLAGS= -std=c99 -Wall -g -o
 
-DEP=graphs.h array.h dijkstra.h stack.h
+DEP=graphs.h array.h dijkstra.h stack.h main.h
 SRC=graphs.c main.c array.c dijkstra.c stack.c
 
 BIN=graphs
