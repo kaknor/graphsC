@@ -10,22 +10,32 @@ int *init_diag(size_t m)
     }
   int d[9] =
     {
-      -m - 1, // upper left
-      -m,     // up
-      -m + 1, // upper right
-      -1,     // left
-      0,      // self
-      1,      // right
-      m - 1,  // lower left
-      m,      // low
-      m + 1   // lower right
+      // upper left
+      -m - 1,
+      // up
+      -m,
+      // upper right
+      -m + 1,
+      // left
+      -1,
+      // self
+      0,
+      // right
+      1,
+      // lower left
+      m - 1,
+      // low
+      m,
+      // lower right
+      m + 1   
     };
   for (size_t i = 0; i < 9; i++)
     diag[i] = d[i];
   return diag;
 }
 
-int *diag(int x, struct graph *g)//tester des bails avec des additions de tableaux etc...
+//tester des bails avec des additions de tableaux etc...
+int *diag(int x, struct graph *g)
 {
   size_t m = g->m;
   int *d = malloc(sizeof (int) * 9);
@@ -55,11 +65,12 @@ int *diag(int x, struct graph *g)//tester des bails avec des additions de tablea
   return d;
 }
 
-int cost(int x, int y, struct graph *g) /* bail a changer pour les coup */
+int cost(int x, int y, struct graph *g)
 {
   if (x == y)
     return 0;
-  int *d = g->diag(x, g); /* g->diag changer par map_get_floor */
+  /* g->diag changer par map_get_floor */
+  int *d = g->diag(x, g); 
   int *g_mat = g->mat;
   for (size_t i = 0; i < 9; i++)
     {
@@ -70,17 +81,72 @@ int cost(int x, int y, struct graph *g) /* bail a changer pour les coup */
         }
     }
   free(d);
-  return g->inf;/* INF */
+  /* INF */
+  return g->inf;
 }
 
-/* int cost_char(int x, int y, struct graph *g) */
-/* { */
-  
-/* } */
+/* TODO : faire un fichier a part avec get_i dedans */
+static inline size_t get_i(size_t x, struct graph *g)
+{
+  return (x - (x % g->m)) / g->m;
+}
 
+/* TODO : faire un fichier a part avec get_j dedans */
+static inline size_t get_j(size_t x, size_t i, struct graph *g)
+{
+  return x - i * g->m;
+}
+
+/* TODO : rm cette fonction (fonction de test) */
+enum floortype test_map_get_floor(struct graph *g, int i, int j)
+{
+  char *map = g->mat;
+  size_t m = g->m;
+  return (map[coord(i, j, m)] == 'r') * ROAD
+    + (map[coord(i, j, m)] == 'g') * GRASS
+    + (map[coord(i, j, m)] == 'b') * BLOCK
+    + (map[coord(i, j, m)] == 'f') * FINISH;
+}
+
+/* TODO : laisse le call a map_get_floor une fois le test fini */
+/* TODO : faire un fichier a part avec edge_cost dedans */
+/* DEAD CODE */
+int edge_cost(int x, struct graph *g)
+{
+  size_t i = get_i(x, g);
+  size_t j = get_j(x, i, g);
+  /* enum floortype t = map_get_floor(g->mat, i, j); */
+  enum floortype t = test_map_get_floor(g, i, j);
+  return (t == ROAD) * 0
+    + (t == GRASS) * 1
+    + (t == BLOCK) * g->inf
+    + (t == FINISH) * 3;
+}
+
+/* TODO : faire un fichier cost.[hc] avec les fonctions de couts dedans */
+int cost_char(int x, int y, struct graph *g)
+{
+  if (x == y)
+    return 0;  
+  int *d = g->diag(x, g); 
+  for (size_t i = 0; i < 9; i++)
+    {
+      if (d[i] == y)
+        {
+          free(d);
+          return edge_cost(y, g);
+        }
+    }
+  free(d);
+  /* INF */
+  return g->inf;
+  
+}
+
+/* DEAD CODE */
 struct graph *init_graph(size_t n, size_t m, int inf/* , size_t g_type */)
 {
-  struct graph *g = malloc(sizeof (struct graph));
+  struct graph *g = calloc(n * m, sizeof (struct graph));
   if (!g)
     {
       write(STDERR_FILENO, "g : allocation failed in init_graph\n", 33);
@@ -92,16 +158,19 @@ struct graph *init_graph(size_t n, size_t m, int inf/* , size_t g_type */)
   g->size = m * n;
   g->d = init_diag(g->m);
   g->diag = diag;
-  g->cost = cost;
+  /* fonction de cout */
+  g->cost = cost_char;
   return g;
 }
 
-         /* a remplacer par des fonctions map */
-
+/* TODO : a remplacer par des fonctions map */
+/* TODO : rm printf */
+/* UNAUTHORIZED FUNCTION : printf */
 void print_graph(struct graph g)
 {
   size_t c = 0;
-  int *g_mat = g.mat; /* la ou la genericte prends place */
+  /* la ou la genericte prends place */
+  int *g_mat = g.mat; 
   for (size_t i = 0; i < g.size; i++)
     {
       if (c > g.m - 1)
@@ -113,7 +182,8 @@ void print_graph(struct graph g)
       c++;
     }
 }
-
+/* TODO : rm */
+/* UNAUTHORIZED FUNCTION : printf */
 void print_array(int *t, size_t n)
 {
   for (size_t i = 0; i < n; i++)

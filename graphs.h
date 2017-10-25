@@ -5,16 +5,45 @@
 # include "array.h"
 # include "stack.h"
 
+enum floortype /* A SUPPRIMER !!!!!!!!!!!! */
+{
+  ROAD = 0x00,
+  GRASS = 0x01,
+  BLOCK = 0x02,
+  FINISH = 0x03
+};
+
+/* DEAD CODE */
+/* enum g_type */
+/*   { */
+/*     CHAR = 0, */
+/*     INT = 1 */
+/*   }; */
+
+/* int (*)(int x, int y, struct graph *g)[2] = */
+/* { */
+  
+/* }; */
+
 struct graph
 {
-  size_t n; /* n soit le nombre de lignes */
-  size_t m; /* m soit le nombre de colonnes */
+  /* n soit le nombre de lignes */
+  size_t n;
+  /* m soit le nombre de colonnes */
+  size_t m;
+  /* m * n soit la taille de mat */
   size_t size;
+  /* valeur infini pour les poids inf */
   int inf;
-  void *mat;/* malloc */
-  int *d;/* malloc */
-  int *(*diag)(int x, struct graph *g);
+  /* malloc */
+  void *mat;
+  /* malloc */
+  int *d;
+
+  /* fonction cout */
   int (*cost)(int x, int y, struct graph *g);
+  /* fonction de calcule des diagonlaes */
+  int *(*diag)(int x, struct graph *g);
 };
 
 static inline int coord(int i, int j, size_t n)
@@ -22,7 +51,8 @@ static inline int coord(int i, int j, size_t n)
   return i * n + j;
 }
 
-struct graph *init_graph(size_t n, size_t m, int inf/* , size_t g_type */);
+/* DEAD CODE */
+struct graph *init_graph(size_t n, size_t m, int inf/* , enum g_type */);
 
 void print_graph(struct graph g);
 
