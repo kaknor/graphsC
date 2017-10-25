@@ -29,7 +29,7 @@ void dijkstra(int x_x, int x_y, struct graph *g, int *ppd, int *pred)
   for (size_t i = 0; i < g->size; i++)
     {
       ppd[i] = g->cost(coord(x_x, x_y, g->m), i, g);
-      pred[i] = coord(x_x, x_y, n);
+      pred[i] = coord(x_x, x_y, g->m);
       M = add(i, M);
     }
   M = rm(coord(x_x, x_y, g->m), M);

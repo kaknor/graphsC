@@ -3,18 +3,30 @@
 int main(void)
 {
   /* changer n par m pour matrice non carre, n sinon */
-  size_t n = 5;
-  size_t m = 12;
-  size_t s_x =2;
-  size_t s_y =2;
-  size_t f_x =9;
-  size_t f_y =2;
+  size_t n = 25;
+  size_t m = 55;
+  size_t s_x = 14;
+  size_t s_y = 2;
+  size_t f_x = 14;
+  size_t f_y = 52;
+  void *map = acu_test_simple;
+
+  /* size_t n = 5; */
+  /* size_t m = 12; */
+  /* size_t s_x = 2; */
+  /* size_t s_y = 2; */
+  /* size_t f_x = 2; */
+  /* size_t f_y = 9; */
+  /* size_t size = sizeof (char); */
+  /* void *map = char_test_lines; */
+
+  
   /* changer inf du graph */
-  struct graph *g = init_graph(n, m, 42);
+  struct graph *g = init_graph(n, m, 2000000);
   if (g->mat)
     free(g->mat);
   /* changer la map */
-  g->mat = char_test_lines;
+  g->mat = map;
   struct graph *ppd = init_graph(n, m,  -1);
   ppd->mat = malloc(sizeof (int) * g->size);
   struct graph *pred = init_graph(n, m,  -1);
@@ -26,10 +38,10 @@ int main(void)
   /* print_graph(*ppd); */
   /* printf("\n pred : \n"); */
   /* print_graph(*pred); */
-  /* printf("\n"); */
+  printf("\n");
 
   /* start et finish et sizeof a changer ici */
-  struct stack *s = get_path(pred->mat, coord(s_x, s_y, g->m), coord(f_x, f_y, g->m), sizeof (char));
+  struct stack *s = get_path(pred->mat, coord(s_x, s_y, g->m), coord(f_x, f_y, g->m), sizeof (int));
   for (size_t i = s->size; i > 0; i--)
     {
       int *a = pop(s);

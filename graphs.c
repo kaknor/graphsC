@@ -98,7 +98,7 @@ static inline size_t get_j(size_t x, size_t i, struct graph *g)
 }
 
 /* TODO : rm cette fonction (fonction de test) */
-enum floortype test_map_get_floor(struct graph *g, int i, int j)
+static inline enum floortype test_map_get_floor(struct graph *g, int i, int j)
 {
   char *map = g->mat;
   size_t m = g->m;
@@ -117,8 +117,8 @@ int edge_cost(int x, struct graph *g)
   size_t j = get_j(x, i, g);
   /* enum floortype t = map_get_floor(g->mat, i, j); */
   enum floortype t = test_map_get_floor(g, i, j);
-  return (t == ROAD) * 0
-    + (t == GRASS) * 1
+  return (t == ROAD) * 1
+    + (t == GRASS) * 2
     + (t == BLOCK) * g->inf
     + (t == FINISH) * 3;
 }
